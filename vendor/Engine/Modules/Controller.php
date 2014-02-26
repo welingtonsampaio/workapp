@@ -8,6 +8,7 @@
  */
 
 namespace Engine\Modules;
+use MD3\I18n;
 
 /**
  * Controller\Module class
@@ -69,6 +70,11 @@ class Controller extends \Engine\Controller {
      * @var array
      */
     protected $config;
+
+    /**
+     * @var I18n
+     */
+    protected $i18n;
 	
 	function __construct($config = array()) {
 		parent::__construct();
@@ -90,7 +96,9 @@ class Controller extends \Engine\Controller {
         $this->action = $this->registry["action"];
         $this->args = $this->registry["args"];
         $this->get = $this->registry["get"];
-        $this->post = $this->registry["post"];      
+        $this->post = $this->registry["post"];
+
+        $this->i18n = I18n::getInstance();
     }
 
 	public function __call($name = null, $args = null) {

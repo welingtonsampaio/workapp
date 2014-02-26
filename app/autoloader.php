@@ -10,6 +10,7 @@ $loader->registerNamespaces(array(
                 'System'        => __DIR__ . '/../' . $config['path']['library'] . $config['path']['application'],
                 'Otms'                  => __DIR__ . '/../' . $config['path']['src'],
                 'Phpmailer'            => __DIR__ . '/../' . $config['path']['library'] . '/mailer',
+                'MD3'            => __DIR__ . '/../' . $config['path']['library'],
 ));
 $loader->registerPrefixes(array(
                 'Twig_Extensions_' => __DIR__ . '/../' . $config['path']['library'] . '/twig-extensions/lib',

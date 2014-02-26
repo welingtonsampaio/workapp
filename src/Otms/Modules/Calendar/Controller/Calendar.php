@@ -22,8 +22,9 @@ use Engine\Modules\Controller;
 class Calendar extends Controller {
 
 	public function index() {
-		$this->view->setTitle("Календарь");
-		
+        $this->i18n->setNamespace('module-calendar');
+		$this->view->setTitle($this->i18n->title);
+
 		$cal = & $_SESSION["cal"];
 		if(!isset($cal["year"])) {
 			$cal["year"] = date("Y");
@@ -31,7 +32,7 @@ class Calendar extends Controller {
 		if(!isset($cal["month"])) {
 			$cal["month"] = date("m");
 		}
-		
+
 		if (isset($this->get["oid"])) {
 			$this->view->cal(array("ui" => $this->registry["ui"], "oid" => $this->get["oid"], "day" => date("d"), "month" => $cal["month"], "year" => $cal["year"], "calYear" => $this->registry["calYear"], "type" => "oid"));
 		} else if (isset($this->get["uid"])) {
@@ -40,10 +41,10 @@ class Calendar extends Controller {
 			$allmytask = $this->registry["task"]->getNumStatTasks();
 			$itertask = $this->registry["task"]->getNumIterTasks();
 			$timetask = $this->registry["task"]->getNumTimeTasks();
-			
+
 			$this->view->cal(array("ui" => $this->registry["ui"], "day" => date("d"), "month" => $cal["month"], "year" => $cal["year"], "allmytask" => $allmytask, "itertask" => $itertask, "timetask" => $timetask, "calYear" => $this->registry["calYear"], "caltype" => $cal["type"], "type" => "all"));
 		}
-		 
+
 		$this->view->showPage();
 	}
 }
